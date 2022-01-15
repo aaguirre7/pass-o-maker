@@ -1,5 +1,5 @@
 //Declarations
-var lenghtPass;
+var lenghtPass = 0;
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 //characters for passwords 
@@ -16,8 +16,9 @@ var userPassword = [];
 // password prompts and questions, 
 // also saves the characters types to be used in password
 function confirmAction(){
+  resultArray = [];
   lenghtPass = prompt("How much number of Character you want between 8 and 128?");
-  if (lenghtPass >= 8 && lenghtPass <= 150 ){
+  if (lenghtPass >= 8 && lenghtPass <= 128 ){
     var numbers = confirm ("you want numbers in your password?");
     if (numbers){ 
       resultArray = resultArray.concat(numbersarray);
@@ -44,7 +45,8 @@ function confirmAction(){
 
 function generatePassword(){
   confirmAction();
-  for (var i = 0; i < lenghtPass; i++){
+  userPassword = [];
+  for (var i = 1; i <= lenghtPass; i++){
     userPassword.push (resultArray[Math.floor(Math.random()*resultArray.length)]);
   }
   return userPassword.join("");
@@ -63,4 +65,5 @@ function generatePassword(){
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-console.log(resultArray);
+
+
