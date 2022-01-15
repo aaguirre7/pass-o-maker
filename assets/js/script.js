@@ -1,5 +1,6 @@
 //Declarations
 var lenghtPass = 0;
+var clipboardText = "";
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 //characters for passwords 
@@ -42,7 +43,6 @@ function confirmAction(){
     alert("Try again");
   }   
 }
-
 function generatePassword(){
   confirmAction();
   userPassword = [];
@@ -50,20 +50,21 @@ function generatePassword(){
     userPassword.push (resultArray[Math.floor(Math.random()*resultArray.length)]);
   }
   return userPassword.join("");
-
 }
-
 // Write password to the #password input
-  function writePassword() {
-    
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = password;
-
-  }
-
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+  clipboardText = password;
+  console.log(password);
+  copyToClipboard()
+ }
+//copy to clipboard alert
+function copyToClipboard(){
+  var copyPassword = clipboardText
+  navigator.clipboard.writeText(copyPassword);
+  console.log(copyPassword);
+}  
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
